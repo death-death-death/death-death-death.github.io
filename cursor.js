@@ -1,6 +1,6 @@
 // Находим наш кастомный элемент курсора
 const customCursor = document.getElementById('custom-cursor');
-// Находим элемент, при наведении на который курсор должен стать анимированным (нашу ссылку)
+// Находим элемент, при наведении на который курсор должен стать анимированным
 const targetLink = document.querySelector('a');
 
 
@@ -9,7 +9,6 @@ const targetLink = document.querySelector('a');
 // ******************************************************
 document.addEventListener('mousemove', (e) => {
     // Устанавливаем позицию кастомного курсора
-    // e.clientX и e.clientY дают точные координаты мыши
     customCursor.style.left = `${e.clientX}px`;
     customCursor.style.top = `${e.clientY}px`;
 });
