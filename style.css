@@ -1,0 +1,61 @@
+/* 1. Скрываем системный курсор по всей странице */
+html {
+    cursor: none; 
+}
+
+/* 2. Отключаем системный курсор для интерактивных элементов (ссылки и изображения), 
+   чтобы он не перекрывал кастомный курсор. */
+a, img {
+    cursor: none !important; 
+    /* !important гарантирует, что это правило не будет переопределено браузером */
+    display: block; 
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    /* Черный фон */
+    background-color: black;
+    
+    /* Центрирование гифки */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 3. Стиль для нашего кастомного элемента курсора, который двигается с помощью JS */
+#custom-cursor {
+    /* Позиционирование: всегда вверху и над всеми элементами */
+    position: fixed;
+    z-index: 9999;
+    /* Убедимся, что курсор не мешает кликать по элементам под ним */
+    pointer-events: none; 
+
+    /* Размеры курсора (если у тебя 32x32) */
+    width: 32px; 
+    height: 32px; 
+
+    /* По умолчанию: статичный курсор */
+    background-image: url('Cursor_Static.png');
+    background-size: cover;
+    
+    /* Плавность для более красивого движения */
+    transition: transform 0.05s linear; 
+
+    /* Смещение для центрирования "горячей точки" (для курсора 32x32) */
+    transform: translate(-16px, -16px);
+}
+
+/* 4. Класс, который JS добавляет, чтобы показать анимированный курсор */
+.cursor-animated {
+    background-image: url('Cursor_Animated.gif') !important;
+}
+
+/* 5. Хитрость для предзагрузки, чтобы ничего не моргало */
+body::after {
+    content: url('animated.gif') url('Cursor_Animated.gif');
+    display: none;
+}
