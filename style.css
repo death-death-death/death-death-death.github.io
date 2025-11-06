@@ -1,3 +1,9 @@
+/* 0. Задаем 100% высоты для страницы */
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
 /* 1. Скрываем системный курсор по всей странице */
 html {
     cursor: none; 
@@ -9,54 +15,65 @@ a, img {
     display: block; 
 }
 
-body, html {
-    height: 100%;
-    margin: 0;
-}
-
 body {
-    /* Важно для позиционирования benadryl.gif */
     position: relative; 
     background-color: black;
     
-    /* Центрирование ОСНОВНОЙ гифки */
+    /* Центрирование ВЕРТИКАЛЬНОЕ */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 3. Стиль для кастомного элемента курсора */
-#custom-cursor {
-    position: fixed;
-    z-index: 9999; /* Всегда поверх всего */
-    pointer-events: none; /* Не блокирует клики */
+/* 3. Контейнер для двух гифок */
+#central-container {
+    display: flex;
+    gap: 30px; 
+    z-index: 20;
+    align-items: center; 
+}
 
-    width: 32px; 
-    height: 32px; 
-    background-image: url('Cursor_Static.png');
+/* 4. Сдвигаем вторую гифку вверх на 6px */
+#central-container a:nth-child(2) {
+    margin-top: -6px; 
+}
+
+/* 5. Стиль для кастомного элемента курсора */
+#custom-cursor {
+    position: fixed; 
+    z-index: 9999; 
+    pointer-events: none; 
+
+    /* Устанавливаем размер 32x32 */
+    width: 36px; 
+    height: 36px; 
+    
+    /* НОВОЕ: Фоновое изображение (обычный курсор) */
+    background-image: url('Arrow.webp'); 
     background-size: cover;
     
     transition: transform 0.05s linear; 
-    /* Смещение для центрирования "горячей точки" (для курсора 32x32) */
+    /* Смещение для центрирования 32x32 */
     transform: translate(-16px, -16px);
 }
 
-/* 4. Класс для анимированного курсора */
-.cursor-animated {
-    background-image: url('Cursor_Animated.gif') !important;
+/* 5.1 НОВЫЙ КЛАСС: Курсор для ссылки */
+.cursor-link {
+    background-image: url('Link.webp') !important;
 }
 
-/* 5. ПОЗИЦИОНИРОВАНИЕ benadryl.gif */
+
+/* 6. ПОЗИЦИОНИРОВАНИЕ benadryl.gif */
 #benadryl-gif {
     position: absolute; 
-    right: 20px;       /* Отступ 20px от правого края */
-    bottom: 20px;      /* Отступ 20px от нижнего края */
-    z-index: 10;       /* Видна поверх всего, кроме курсора */
+    right: 20px;       
+    bottom: 20px;      
+    z-index: 10;       
 }
 
 
-/* 6. Хитрость для предзагрузки */
+/* 7. Хитрость для предзагрузки */
 body::after {
-    content: url('animated.gif') url('Cursor_Animated.gif') url('benadryl.gif');
+    content: url('animated.gif') url('Speaker2_animated.gif') url('Link.webp') url('benadryl.gif');
     display: none;
 }
