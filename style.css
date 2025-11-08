@@ -1,13 +1,37 @@
-/* 0. Задаем 100% высоты для страницы */
+/* ****************************************************** */
+/* 0. АНИМАЦИИ И ШРИФТЫ */
+/* ****************************************************** */
+
+/* ЗАГРУЗКА ШРИФТА (cose.otf) */
+@font-face {
+    font-family: 'CoseType'; 
+    src: url('cose.otf') format('opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 0.1. Общие настройки */
 body, html {
-    height: 100%;
     margin: 0;
+    /* ИЗМЕНЕНИЕ: Фиксированная высота всего сайта - 900px */
+    height: 900px; 
 }
 
 /* 1. Скрываем системный курсор по всей странице */
 html {
     cursor: none; 
+    /* Фон страницы (вне 800px блока) будет черным */
+    background-color: black; 
+    
+    /* Скрытие бегунка для HTML */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
+/* Скрытие бегунка для Chrome/Safari/Opera на HTML */
+html::-webkit-scrollbar {
+    display: none;
+}
+
 
 /* 2. Отключаем системный курсор для интерактивных элементов */
 a, img {
@@ -16,21 +40,56 @@ a, img {
 }
 
 body {
-    position: relative; 
-    background-color: black;
+    position: relative; /* Родитель для абсолютного позиционирования */
     
-    /* Центрирование ВЕРТИКАЛЬНОЕ */
+    /* Фон 800px блока - черный */
+    background-color: black; 
+    
+    /* Фиксированная ширина 800px и центрирование */
+    width: 800px;
+    margin: 0 auto;
+    
+    display: block;
+    
+    /* СКРЫТИЕ БЕГУНКА ПРОКРУТКИ */
+    overflow-y: auto; 
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+/* Скрытие бегунка для Chrome, Safari, Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* НОВЫЙ КОНТЕЙНЕР: Для центрирования гифок */
+#header-content {
+    position: relative; 
+    z-index: 10;
+    
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    width: 100%; 
+    padding-top: 15vh;
+    padding-bottom: 50px; 
 }
+
 
 /* 3. Контейнер для двух гифок */
 #central-container {
     display: flex;
     gap: 30px; 
-    z-index: 20;
+    
+    margin: 0 auto; 
+    
+    position: static; 
+    z-index: auto; 
+    
     align-items: center; 
+    width: fit-content; 
 }
 
 /* 4. Сдвигаем вторую гифку вверх на 6px */
@@ -44,36 +103,167 @@ body {
     z-index: 9999; 
     pointer-events: none; 
 
-    /* Устанавливаем размер 32x32 */
-    width: 36px; 
-    height: 36px; 
+    width: 32px; 
+    height: 32px; 
     
-    /* НОВОЕ: Фоновое изображение (обычный курсор) */
     background-image: url('Arrow.webp'); 
     background-size: cover;
     
     transition: transform 0.05s linear; 
-    /* Смещение для центрирования 32x32 */
     transform: translate(-16px, -16px);
 }
 
-/* 5.1 НОВЫЙ КЛАСС: Курсор для ссылки */
+/* 5.1 Класс для курсора-ссылки */
 .cursor-link {
     background-image: url('Link.webp') !important;
 }
 
 
-/* 6. ПОЗИЦИОНИРОВАНИЕ benadryl.gif */
+/* 6. ПОЗИЦИОНИРОВАНИЕ benadryl.gif (СВЕРХУ, СПРАВА ОТ КОНСОЛИ) */
 #benadryl-gif {
     position: absolute; 
-    right: 20px;       
-    bottom: 20px;      
+    
+    /* Сдвиг справа от консоли */
+    left: 440px;       
+    
+    /* ИЗМЕНЕНИЕ: Расчет: 900px (body height) - 377px - 25px = 498px */
+    top: 498px;      
     z-index: 10;       
+    pointer-events: auto; 
 }
 
 
-/* 7. Хитрость для предзагрузки */
+/* 7. СТИЛЫ ДЛЯ КОНСОЛИ ИЗ ПЛОТИ (ГИГЕРА) */
+#terminal-window {
+    position: absolute; 
+    pointer-events: auto; 
+    
+    /* Прилегание к левому краю 800px блока с отступом 25px */
+    left: 25px; 
+    transform: none; 
+    
+    bottom: 25px; 
+    
+    /* РАЗМЕРЫ КАРТИНКИ */
+    width: 395px; 
+    height: 377px; 
+    
+    background-image: url('MeatConsole.png'); 
+    background-size: 100% 100%; 
+    background-repeat: no-repeat;
+    
+    background-color: transparent; 
+    border: none; 
+    
+    /* Применение шрифта CoseType */
+    font-family: 'CoseType', monospace; 
+    font-size: 14px;
+    
+    z-index: 5; 
+    box-shadow: none; 
+    
+    /* Убираем системный курсор при наведении на окно консоли */
+    cursor: none !important; 
+}
+
+/* Заголовок окна (теперь пуст) */
+#terminal-header {
+    background-color: transparent; 
+    padding: 3px 5px;
+    /* Убираем курсор-стрелку */
+    cursor: none !important; 
+    height: 59px; 
+    position: relative; 
+}
+
+/* Контейнер для текста */
+#terminal-content {
+    position: absolute;
+    
+    top: 70px; 
+    /* Восстановленный левый отступ (55px) */
+    left: 55px; 
+    
+    width: 230px; 
+    height: 210px; 
+    
+    background-color: transparent; 
+    color: #ffffff; 
+    
+    display: flex; 
+    flex-direction: column;
+    
+    border-radius: 18px;
+    overflow: hidden; 
+    /* Убираем курсор-стрелку */
+    cursor: none !important; 
+}
+
+#terminal-output {
+    flex-grow: 1; 
+    padding: 5px;
+    /* Бегунок появляется, только если нужно */
+    overflow-y: auto; 
+    
+    position: relative; 
+    /* Убираем курсор-стрелку */
+    cursor: none !important; 
+}
+
+#terminal-output::-webkit-scrollbar {
+    display: none;
+}
+
+/* Линия удалена */
+#terminal-input-line {
+    padding: 5px;
+    display: flex;
+    border-top: none; 
+    flex-shrink: 0;
+    /* Убираем курсор-стрелку */
+    cursor: none !important; 
+}
+
+.prompt {
+    margin-right: 5px;
+    white-space: nowrap;
+}
+
+#terminal-input {
+    background: none;
+    border: none;
+    color: #ffffff; 
+    width: 100%;
+    outline: none; 
+    font-family: inherit;
+    font-size: inherit;
+    caret-color: #ffffff; 
+    /* Убираем курсор "печати" (I-beam) */
+    cursor: none !important;
+}
+
+
+/* 8. Хитрость для предзагрузки */
 body::after {
     content: url('animated.gif') url('Speaker2_animated.gif') url('Link.webp') url('benadryl.gif');
     display: none;
+}
+
+/* Стиль для названий команд (ЯРКИЙ БОРДОВЫЙ) */
+.command-name {
+    color: #bf0030; 
+    font-weight: bold; 
+}
+
+/* ****************************************************** */
+/* 9. СТИЛИЗАЦИЯ ПЛЕЙСХОЛДЕРА */
+/* ****************************************************** */
+
+#terminal-input::placeholder {
+    /* Меняем цвет на светло-серый (или любой другой, который вам нравится) */
+    color: #aaaaaa; 
+    /* Можно сделать его более прозрачным, если нужно */
+    opacity: 0.7; 
+    /* Применяем ваш кастомный шрифт */
+    font-family: 'CoseType', monospace; 
 }
