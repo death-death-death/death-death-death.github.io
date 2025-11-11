@@ -123,11 +123,11 @@ body::-webkit-scrollbar {
 #benadryl-gif {
     position: absolute; 
     
-    /* ИЗМЕНЕНИЕ: Сдвиг справа от консоли: 25px (отступ) + 406px (новая ширина) = 431px */
-    left: 431px;       
+    /* ИЗМЕНЕНИЕ: Сдвиг справа от консоли: 25px (отступ) + 409px (новая ширина) = 434px */
+    left: 434px;       
     
-    /* ИЗМЕНЕНИЕ: Расчет: 900px - 303px (новая высота) - 25px = 572px */
-    top: 572px;      
+    /* ИЗМЕНЕНИЕ: Расчет: 900px - 305px (новая высота) - 25px = 570px */
+    top: 570px;      
     z-index: 10;       
     pointer-events: auto; 
 }
@@ -144,9 +144,9 @@ body::-webkit-scrollbar {
     
     bottom: 25px; 
     
-    /* ИЗМЕНЕНИЕ: НОВЫЕ РАЗМЕРЫ КАРТИНКИ (406x303) */
-    width: 406px; 
-    height: 300px; 
+    /* ИЗМЕНЕНИЕ: НОВЫЕ РАЗМЕРЫ КАРТИНКИ (409x305) */
+    width: 409px; 
+    height: 305px; 
     
     /* ИМЯ ФАЙЛА ОСТАЕТСЯ MeatConsole2.png */
     background-image: url('MeatConsole2.png'); 
@@ -181,13 +181,13 @@ body::-webkit-scrollbar {
 #terminal-content {
     position: absolute;
     
-    /* ОСТАВЛЯЮ ВАШИ ОТСТУПЫ (ВЕРОЯТНО, ТРЕБУЕТСЯ КОРРЕКТИРОВКА!) */
-    top: 72px; 
-    left: 90px; 
+    /* ОСТАВЛЯЮ ВАШИ ОТСТУПЫ (ТРЕБУЕТСЯ КОРРЕКТИРОВКА!) */
+    top: 70px; 
+    left: 100px; 
     
-    /* ИЗМЕНЕНИЕ: СКОРРЕКТИРОВАННЫЕ РАЗМЕРЫ (ТРЕБУЕТСЯ КОРРЕКТИРОВКА!) */
-    width: 220px; 
-    height: 145px; 
+    /* СКОРРЕКТИРОВАННЫЕ РАЗМЕРЫ (ТРЕБУЕТСЯ КОРРЕКТИРОВКА!) */
+    width: 200px; 
+    height: 150px; 
     
     /* !!! ВРЕМЕННЫЙ РОЗОВЫЙ ФОН ДЛЯ ОТЛАДКИ !!! */
     background-color: transparent; 
